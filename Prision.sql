@@ -773,3 +773,37 @@ FROM
     Presos
 RIGHT JOIN
     Saude ON Presos.preso_id = Saude.preso_id;
+
+
+USE SistemaCarcerario;
+
+SELECT * FROM Presos;
+SELECT * FROM Prisoes;
+SELECT * FROM saude;
+SELECT * FROM Programa;
+SELECT * FROM Participacao;
+SELECT * FROM Celas;
+SELECT * FROM Funcionario;
+
+DELETE FROM Funcionario WHERE funcionario_id = 21;
+SELECT * FROM Funcionario;
+
+UPDATE Presos
+SET endereco = 'Rua dos bobo, 0'
+WHERE preso_id = 1;
+SELECT * FROM Presos;
+
+UPDATE Saude
+SET condicao = 'Melhorando', tratamento = 'Cha de Picão Doce'
+WHERE preso_id = 2;
+SELECT * FROM saude;
+
+UPDATE Celas
+SET lotacao = 15
+WHERE cela_id = 3;
+SELECT * FROM Celas;
+
+UPDATE Funcionario
+SET h_inicio = '09:00:00', h_fim = '18:00:00'
+WHERE funcionario_id = 10;
+SELECT * FROM Funcionario;
