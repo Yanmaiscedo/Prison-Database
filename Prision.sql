@@ -684,3 +684,92 @@ INSERT INTO Funcionario (nome, cargo, h_inicio, h_fim, contato) VALUES
 ('Tiago Santos', 'Instrutor de Oficinas', '08:00:00', '17:00:00', 'tiago.santos@example.com'),
 ('Camila Pereira', 'Coordenadora', '07:00:00', '16:00:00', 'camila.pereira@example.com');
 
+USE SistemaCarcerario;
+
+SELECT Presos.nome AS Preso, Celas.setor AS Setor, Celas.descricao AS CelaDescricao
+FROM Presos
+INNER JOIN Celas ON Presos.cela_id = Celas.cela_id;
+
+SELECT Crimes.tipo AS Crime, Sentencas.duracao AS Duracao, Sentencas.descricao AS SentencaDescricao
+FROM Crimes
+INNER JOIN Sentencas ON Crimes.crime_id = Sentencas.crime_id;
+
+SELECT Presos.nome AS Preso, Saude.complicacao AS Complicacao, Saude.condicao AS Condicao
+FROM Presos
+LEFT JOIN Saude ON Presos.preso_id = Saude.preso_id;
+
+SELECT Familia.numero AS FamiliaNumero, Visita.dt_visita AS DataVisita, Visita.h_inicio AS HoraInicio
+FROM Familia
+LEFT JOIN Visita ON Familia.Familia_id = Visita.Familia_id;
+
+SELECT Programa.nome AS Programa, Participacao.dt_inicio AS DataInicio, Participacao.dt_fim AS DataFim
+FROM Participacao
+RIGHT JOIN Programa ON Participacao.participacao_id = Programa.programa_id;
+
+SELECT Crimes.tipo AS Crime, Presos.nome AS Preso, Crimes.descricao AS CrimeDescricao
+FROM Crimes
+RIGHT JOIN Presos ON Crimes.preso_id = Presos.preso_id;
+
+SELECT
+    Presos.nome AS Preso,
+    Participacao.dt_inicio AS DataInicio,
+    Participacao.dt_fim AS DataFim,
+    Programa.nome AS Programa,
+    Programa.tipo AS TipoPrograma,
+    Programa.descricao AS ProgramaDescricao
+FROM
+    Presos
+INNER JOIN
+    Participacao ON Presos.preso_id = Participacao.preso_id
+INNER JOIN
+    Programa ON Participacao.programa_id = Programa.programa_id;
+  
+SELECT
+    Presos.nome AS Preso,
+    Participacao.dt_inicio AS DataInicio,
+    Participacao.dt_fim AS DataFim,
+    Programa.nome AS Programa,
+    Programa.tipo AS TipoPrograma,
+    Programa.descricao AS ProgramaDescricao
+FROM
+    Presos
+RIGHT JOIN
+    Participacao ON Presos.preso_id = Participacao.preso_id
+RIGHT JOIN
+    Programa ON Participacao.programa_id = Programa.programa_id;
+ 
+SELECT
+    Presos.nome AS Preso,
+    Crimes.tipo AS Crime,
+    Crimes.gravidade AS Gravidade,
+    Crimes.descricao AS CrimeDescricao,
+    Sentencas.duracao AS DuracaoSentenca,
+    Sentencas.descricao AS SentencaDescricao
+FROM
+    Presos
+INNER JOIN
+    Crimes ON Presos.preso_id = Crimes.preso_id
+INNER JOIN
+    Sentencas ON Crimes.crime_id = Sentencas.crime_id;
+    
+SELECT
+    Presos.nome AS Preso,
+    Saude.complicacao AS Complicacao,
+    Saude.condicao AS Condicao,
+    Saude.dt_diagnostico AS DataDiagnostico,
+    Saude.tratamento AS Tratamento
+FROM
+    Presos
+INNER JOIN
+    Saude ON Presos.preso_id = Saude.preso_id;
+
+SELECT
+    Presos.nome AS Preso,
+    Saude.complicacao AS Complicacao,
+    Saude.condicao AS Condicao,
+    Saude.dt_diagnostico AS DataDiagnostico,
+    Saude.tratamento AS Tratamento
+FROM
+    Presos
+RIGHT JOIN
+    Saude ON Presos.preso_id = Saude.preso_id;
